@@ -14,7 +14,7 @@
 			var css = self.css(['color','font-family','font-weight','font-style','font-size']);
 			css.opacity=.6;
 			_holder.css(css);
-			//检测当前元素父节点是否为label元素
+			//创建HTML元素并将当前节点插入进去
 			var _parent = $('<span style="display:inline-block;"></span>');
 			self.after(_parent).appendTo(_parent);
 			//设置必须样式
@@ -25,6 +25,9 @@
 			//计算提示元素相对label元素的坐标值
 			var _mt = self.offset().top - _parent.offset().top;
 			var _ml = self.offset().left - _parent.offset().left + parseInt(self.css('padding-left')) + parseInt(self.css('border-left-width'));
+			//检测元素是否存在值
+			self.val() != '' && _holder.hide();
+			//附加提示文本元素样式
 			_holder.css({
 				'position' : 'absolute',
 				'color' : _color,
